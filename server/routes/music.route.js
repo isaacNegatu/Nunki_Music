@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 
-// let pool = require('../modules/pool');
+let pool = require('../modules/pool');
 
 router.get('/', (req, res)=>{
     console.log('got to get');
