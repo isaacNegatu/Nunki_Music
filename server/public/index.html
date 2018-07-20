@@ -18,7 +18,9 @@
     <script src="scripts/client.js"></script>
 
     <!--============== put your services here you idiot ============= -->
-
+    <script src="scripts/services/spotify.service.js"></script>
+    <script src="scripts/services/library.service.js"></script>
+    <script src="scripts/services/dialog.service.js"></script>
     <!-- =========================================================== -->
     
     
@@ -26,10 +28,11 @@
     <script src="scripts/controllers/myTracks.controller.js"></script>
     <script src="scripts/controllers/playlists.controller.js"></script>
     <script src="scripts/controllers/search.controller.js"></script>
+    <script src="scripts/controllers/sideBar.controller.js"></script>
 </head>
-<body ng-app="nunkiMusic">
-    <h1>let the music begin</h1>
+<body ng-app="nunkiMusic" ng-cloak layout="row" layout-align="start start">
+    <div flex="20" ng-include src="'views/templates/sidebar.html'"></div>
     
-    <ng-view></ng-view>
+    <ng-view flex="80"></ng-view>
 </body>
 </html>

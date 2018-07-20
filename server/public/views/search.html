@@ -1,0 +1,38 @@
+<h1>Search</h1>
+<md-container layout="row">
+    <md-input-container class="md-block" flex="30">
+        <label>Search by key word</label>
+        <input type="text" ng-model="searchKey" required name="search">
+    </md-input-container>
+    <md-button class="md-primary" ng-click="vm.searchSpotify(searchKey)">Search</md-button>
+</md-container>
+
+<md-container layout="row" layout-wrap>
+    <md-card ng-repeat="track in vm.responses.list" flex-gt-xs="20" layout="column">
+        <img ng-src="{{track.album.images[0].url}}" alt="" class="md-card-image">
+
+        <md-card-title>{{track.name}}</md-card-title>
+
+        <md-card-footer layout="row" layout-align="end center">
+            <md-button  ng-click="vm.addTrack(track)">
+                <i class="material-icons">
+                    add
+                </i>
+            </md-button>
+
+            <md-button ng-click="">
+                <i class="material-icons">
+                    playlist_add
+                </i>
+            </md-button>
+        </md-card-footer>
+
+        <!-- <div class="md-actions" layout="row" layout-align="center center">
+
+          
+        </div> -->
+    </md-card>
+
+
+
+</md-container>
