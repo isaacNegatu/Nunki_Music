@@ -48,6 +48,7 @@ musicApp.service('LibraryService', ['$http', function ($http) {
 
                 $http.post('/music/track', data)
                     .then(function (trackResponse) {
+                        self.getTracks();
                         console.log(trackResponse);
                     })
                     .catch(function (err) {
@@ -58,6 +59,22 @@ musicApp.service('LibraryService', ['$http', function ($http) {
 
             });
     }
+
+    self.getTracks = function(){
+        $http.get('/music/track')
+            .then(function(response){
+                console.log(response);
+                
+                self.tracks.list = response.data;
+                console.log(self.tracks.list);
+                
+            })
+            .catch(function(err){
+                console.log(err);
+                
+            })
+    }
+    self.getTracks();
 
     self.addArtist = function (track) {
         let currentArtistInfo = {

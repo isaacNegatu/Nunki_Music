@@ -1,1 +1,24 @@
 <p>my tracks</p>
+
+<md-list>
+
+
+    <md-list-item class="md-2-line" ng-repeat="track in vm.songList.list" ng-click="vm.viewSong()">
+
+
+        <img ng-src="{{track.image_url}}" class="md-avatar">
+        <div class="md-list-item-text">
+            <h3>{{track.title}}</h3>
+            <p>{{track.name}}</p>
+        </div>
+
+        <md-button ng-click="vm.addToPlaylist(track)">
+            <i class="material-icons">
+                playlist_add
+            </i>
+        </md-button>
+        
+
+    </md-list-item>
+
+</md-list>

@@ -29,6 +29,7 @@ router.post('/artist', (req, res) => {
                     })
                     .catch((err)=>{
                         console.log(err);
+                        res.sendStatus(500);
                         
                     })
                 })
@@ -59,14 +60,26 @@ router.get('/artist', (req, res) => {
         })
         .catch((err) => {
             console.log(err);
-            res.sendStatus(201)
+            res.sendStatus(500)
         });
 
 })
 
 router.get('/track', (req, res) => {
 
-    res.sendStatus(201)
+    let queryParam = `SELECT * FROM "track"
+                      JOIN "artist" ON "artist"."id" = "track"."artist_id"`;
+
+    pool.query(queryParam)
+    .then((response) => {
+        console.log(response);
+        res.send(response.rows);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.sendStatus(201)
+    });
+
 })
 
 router.post('/track', (req, res) => {
