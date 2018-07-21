@@ -4,6 +4,9 @@ musicApp.controller('SearchController', ['SpotifyService', 'LibraryService', fun
 
     self.responses = SpotifyService.tracks;
 
+    self.playlists = LibraryService.playlists;
+
+
     self.searchSpotify = function(searchKey){
         SpotifyService.search(searchKey);
         console.log(self.responses);   
@@ -16,6 +19,16 @@ musicApp.controller('SearchController', ['SpotifyService', 'LibraryService', fun
     self.addTrack = function(track){
         LibraryService.addTrack(track);
     }
+
+    self.showPlaylists = function($mdMenu, ev){
+        $mdMenu.open(ev);
+    }
+
+   self.addTrackToPlaylist = function(trackId, playlistId){
+       LibraryService.addToPlaylist(trackId, playlistId)
+   }
+
+    
 
 
     console.log('SearchController is working');

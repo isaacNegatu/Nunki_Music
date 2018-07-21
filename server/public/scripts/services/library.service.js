@@ -14,17 +14,44 @@ musicApp.service('LibraryService', ['$http', function ($http) {
         list: []
     };
 
+    self.playlists = {
+        list: []
+    }
+
+    self.currentPlaylist = {
+        list: []
+    }
+
 
     self.getPlaylists = function () {
 
         $http.get('/music/playlist')
             .then(function (response) {
                 console.log(response);
+                self.playlists.list = response.data;
+                
             })
             .catch(function (err) {
                 console.log(err);
             })
     }
+
+    self.createPlaylist = function(playlist){
+        let playlistObject = {
+            name : playlist
+        }
+        $http.post('/music/playlist', playlistObject)
+            .then(function(response){
+                console.log(response);
+                self.getPlaylists();
+            })
+            .catch(function(err){
+                console.log(err);
+                
+            })
+    }
+
+    self.getPlaylists();
 
     self.addTrack = function (track) {
 
@@ -76,6 +103,19 @@ musicApp.service('LibraryService', ['$http', function ($http) {
     }
     self.getTracks();
 
+    self.deleteTrack = function(track){
+        
+        $http.delete(`/music/track/${track.id}`)
+            .then(function(response){
+                console.log(response);
+                self.getTracks();
+            })
+            .catch(function(err){
+                console.log(err);
+                
+            });
+    }
+
     self.addArtist = function (track) {
         let currentArtistInfo = {
             name: track.artists[0].name,
@@ -104,6 +144,46 @@ musicApp.service('LibraryService', ['$http', function ($http) {
                 console.log(err);
             })
     }
+
+    self.addToPlaylist = function(trackId, playlistId){
+
+        let data = {
+            trackId : trackId,
+            playlistId : playlistId
+        }
+
+        $http.post('/music/track_playlist', data)
+            .then(function(response){
+                
+                console.log(response);
+            })
+            .catch(function(err){
+                console.log(err);
+            });
+    }
+
+
+    self.getTracksInPlaylist = function(playlistId){
+        $http.get(`/music/track_playlist/${playlistId}`)
+            .then(function(response){
+
+                self.currentPlaylist.list = response.data;
+                console.log(response);
+                
+            })
+            .catch(function(err){
+                console.log(err);
+                
+            })
+
+    }
+
+
+    
+
+
+
+    
 
 
 }]);

@@ -1,6 +1,6 @@
 musicApp.service('SpotifyService', ['$http', function($http){
 
-    const ACCESS_TOKEN = 'BQBqtvZXSaZPsCcoPMq_qolsBJuDGASABrVNrgrilRInWsQuyljxcSUJimcngEhz1wLAgXdoQMX627eqOIf-BhdMuiWAIGHLKxextQCOge_HpqFOVlXE6W8NYGCc3F6cEJqn6ZaVVzHK0Wtm';
+    const ACCESS_TOKEN = 'BQCd17NF2SjXxU1gpnUihHkhNkOjk6Bzb-R3uoAFznHzPdCuC0zsoD4-E12J9DiWGB2GT0z9LX3PHgt4rS7uo6S2SO1NMyX34ZVui4yxgfPLXOTlO1QyDDblukSfog4Jfj67jNMSUR24vAGV';
 
     const BASE_URL = 'https://api.spotify.com/v1/'
 
@@ -22,11 +22,9 @@ musicApp.service('SpotifyService', ['$http', function($http){
             .then(function(response){
                 self.tracks.list = response.data.tracks.items;
                 console.log(self.tracks.list);
-                
             })
             .catch(function(err){
                 console.log(err);
-                
             });
     }
 

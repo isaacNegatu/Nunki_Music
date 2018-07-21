@@ -20,11 +20,22 @@
                 </i>
             </md-button>
 
-            <md-button ng-click="">
-                <i class="material-icons">
-                    playlist_add
-                </i>
-            </md-button>
+            <md-menu>
+                    <md-button ng-click="vm.showPlaylists($mdMenu, $event)">
+                        <i class="material-icons">
+                            playlist_add
+                        </i>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item ng-repeat="playlist in vm.playlists.list">
+                            <md-button ng-click="vm.addTrackToPlaylist(track.id, playlist.id)">
+                                {{playlist.title | uppercase}}
+                            </md-button>
+                        </md-menu-item>
+        
+                    </md-menu-content>
+        
+                </md-menu>
         </md-card-footer>
         
     </md-card>
