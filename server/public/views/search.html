@@ -13,7 +13,7 @@
 
         <md-card-title>{{track.name}}</md-card-title>
 
-        <md-card-footer layout="row" layout-align="end center">
+        <md-card-footer layout="row" layout-align="center center">
             <md-button  ng-click="vm.addTrack(track)">
                 <i class="material-icons">
                     add
@@ -26,9 +26,9 @@
                             playlist_add
                         </i>
                     </md-button>
-                    <md-menu-content width="4">
+                    <md-menu-content>
                         <md-menu-item ng-repeat="playlist in vm.playlists.list">
-                            <md-button ng-click="vm.addTrackToPlaylist(track.id, playlist.id)">
+                            <md-button ng-click="vm.addTrackToPlaylist(track, playlist.id)">
                                 {{playlist.title | uppercase}}
                             </md-button>
                         </md-menu-item>

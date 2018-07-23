@@ -9,7 +9,7 @@ router.post('/artist', (req, res) => {
 
     let queryValues = [artist.name, artist.api_url];
 
-    let queryParam = `INSERT INTO "artist" ("name", "artist_api_url") VALUES ($1, $2)`
+    let queryParam = `INSERT INTO "artist" ("name", "artist_api_url") VALUES ($1, $2)`;
 
     pool.query(`SELECT * FROM "artist" WHERE "name" = $1`, [artist.name])
         .then((selectRes) => {
@@ -20,7 +20,6 @@ router.post('/artist', (req, res) => {
                     .then((response) => {
                         pool.query(`SELECT * FROM "artist" WHERE "name" = $1`, [artist.name])
                             .then((finalRes) => {
-
                                 res.send(finalRes);
                             })
                             .catch((err) => {
@@ -60,22 +59,44 @@ router.get('/artist', (req, res) => {
 
 })
 
-router.get('/track', (req, res) => {
+router.get('/track/:id?', (req, res) => {
+    let queryParam = '';
+    if (req.params.id) {
 
+        let track_api_url = `https://api.spotify.com/v1/tracks/${req.params.id}`;
+        console.log('======================================');
+        console.log(track_api_url);
 
-    let queryParam = `SELECT * FROM "artist"
+        queryParam = `SELECT * FROM "track" WHERE "track".track_api_url = $1`;
+
+        pool.query(queryParam, [track_api_url])
+            .then((response) => {
+
+                res.send(response.rows);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.sendStatus(201)
+            });
+    } else {
+        queryParam = `SELECT * FROM "artist"
                       JOIN "track" ON "artist"."id" = "track"."artist_id"`;
 
-    pool.query(queryParam)
-        .then((response) => {
-            res.send(response.rows);
-        })
-        .catch((err) => {
-            console.log(err);
-            res.sendStatus(201)
-        });
+        pool.query(queryParam)
+            .then((response) => {
+                res.send(response.rows);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.sendStatus(201)
+            });
+    }
+
+
 
 })
+
+
 
 router.post('/track', (req, res) => {
     let data = req.body;
@@ -119,7 +140,7 @@ router.delete('/track/:id', (req, res) => {
         })
         .catch((err) => {
             console.log(err);
-            
+
             res.sendStatus(500);
         })
 
@@ -157,10 +178,36 @@ router.get('/playlist', (req, res) => {
 
 })
 
+router.delete('/playlist/:id', (req, res) => {
+
+    pool.query('DELETE FROM "track_playlist" WHERE "playlist_id" = $1', [req.params.id])
+        .then((response) => {
+            pool.query('DELETE FROM "playlist" WHERE "playlist"."id" = $1', [req.params.id])
+                .then((response) => {
+                    console.log(response);
+                    res.sendStatus(201);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    res.sendStatus(500);
+                })
+        })
+        .catch((err) => {
+            console.log(err);
+            res.sendStatus(500);
+
+        })
+
+
+});
+
 
 router.post('/track_playlist', (req, res) => {
 
     let data = req.body;
+
+    console.log(data);
+
 
     pool.query('INSERT INTO "track_playlist" ("track_id", "playlist_id") VALUES ($1, $2)', [data.trackId, data.playlistId])
         .then((response) => {
@@ -175,8 +222,8 @@ router.post('/track_playlist', (req, res) => {
 })
 
 
-router.get('/track_playlist/:id', (req, res)=>{
-    
+router.get('/track_playlist/:id', (req, res) => {
+
     let playlistId = req.params.id;
 
     let queryParam = `SELECT * FROM "track_playlist"
@@ -186,17 +233,33 @@ router.get('/track_playlist/:id', (req, res)=>{
     WHERE "track_playlist"."playlist_id" = $1;`;
 
     pool.query(queryParam, [playlistId])
-        .then((response)=>{
-            console.log('======================================');
-    
+        .then((response) => {
+
+
             res.send(response.rows);
 
         })
-        .catch((err)=>{
+        .catch((err) => {
             console.log(err);
             res.sendStatus(500);
-            
-        })    
+
+        })
+})
+
+
+router.delete('/track_playlist/:trackId/:playlistId', (req, res) => {
+    let data = req.params;
+
+    console.log(data);
+
+    pool.query(`DELETE FROM "track_playlist" WHERE "track_id" = $1 AND "playlist_id" = $2`, [data.trackId, data.playlistId])
+        .then((respose) => {
+            res.sendStatus(201);
+        })
+        .catch((err) => {
+            res.sendStatus(500);
+        })
+
 })
 
 

@@ -20,7 +20,7 @@
             </md-button>
             <md-menu-content width="4">
                 <md-menu-item ng-repeat="playlist in vm.playlists.list">
-                    <md-button ng-click="vm.addTrackToPlaylist(track.id, playlist.id)">
+                    <md-button ng-click="vm.addTrackToPlaylist(track, playlist.id)">
                         {{playlist.title | uppercase}}
                     </md-button>
                 </md-menu-item>
@@ -28,11 +28,6 @@
             </md-menu-content>
 
         </md-menu>
-        <!-- <md-button ng-click="vm.addToPlaylist(track)">
-            <i class="material-icons">
-                playlist_add
-            </i>
-        </md-button> -->
 
         <md-button ng-click="vm.deleteTrack(track)">
             <i class="material-icons">

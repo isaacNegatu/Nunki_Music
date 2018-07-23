@@ -12,7 +12,7 @@ musicApp.controller('PlaylistsController',[ 'LibraryService', function(LibrarySe
     }
 
     self.deletePlaylist = function(playlist){
-        // LibraryService.deletePlaylists(playlist);
+        LibraryService.deletePlaylist(playlist);
     }
 
 
@@ -20,7 +20,13 @@ musicApp.controller('PlaylistsController',[ 'LibraryService', function(LibrarySe
 
         console.log(playlistId);
         LibraryService.getTracksInPlaylist(playlistId);
-   
+        console.log(self.currentPlaylist);
+        
+    }
+
+    self.removeFromPlaylist = function(track){
+        
+        LibraryService.removeFromPlaylist(track.track_id, self.currentPlaylist.list[0].playlist_id);
     }
 
     console.log(self.playlists);

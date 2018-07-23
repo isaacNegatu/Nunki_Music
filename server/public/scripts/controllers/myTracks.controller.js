@@ -25,8 +25,8 @@ musicApp.controller('MyTracksController', ['LibraryService','SpotifyService','$m
         $mdMenu.open(ev);
     }
 
-   self.addTrackToPlaylist = function(trackId, playlistId){
-       LibraryService.addToPlaylist(trackId, playlistId)
+   self.addTrackToPlaylist = function(track, playlistId){
+       LibraryService.addToPlaylist(track, playlistId)
    }
     
     
