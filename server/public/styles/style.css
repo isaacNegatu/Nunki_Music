@@ -10,3 +10,15 @@ md-sidenav{
 md-card-footer{
     padding: 0 !important;
 }
+
+#popupEmbed{
+    padding-left: 50%;
+}
+
+.thumbnailCards:hover{
+    background-color:#000;
+    opacity:0.6;
+    color: white;
+}
+
+

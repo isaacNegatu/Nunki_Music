@@ -149,6 +149,8 @@ musicApp.service('LibraryService', ['$http', function ($http) {
         if (track.album) {
             self.getTrackId(track)
                 .then(function (getTResponse) {
+                    console.log(getTResponse);
+                    
                     if (getTResponse.length == 0) {
                         self.addTrack(track)
                             .then(function () {
@@ -177,8 +179,22 @@ musicApp.service('LibraryService', ['$http', function ($http) {
                             })
 
                     } else {
-
-
+                        let data = {
+                            trackId: getTResponse[0].id,
+                            playlistId: playlistId
+                        }
+            
+                        console.log(track);
+            
+            
+                        $http.post('/music/track_playlist', data)
+                            .then(function (response) {
+                                self.getTracksInPlaylist(data.playlistId);
+                                console.log(response);
+                            })
+                            .catch(function (err) {
+                                console.log(err);
+                            });
                     }
                 })
                 .catch(function (err) {

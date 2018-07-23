@@ -1,4 +1,4 @@
-musicApp.controller('SearchController', ['SpotifyService', 'LibraryService', function(SpotifyService, LibraryService){
+musicApp.controller('SearchController', ['SpotifyService', 'LibraryService', 'DialogService', function(SpotifyService, LibraryService, DialogService){
 
     let self = this;
 
@@ -28,8 +28,10 @@ musicApp.controller('SearchController', ['SpotifyService', 'LibraryService', fun
        LibraryService.addToPlaylist(track, playlistId)
    }
 
+   self.viewSong = function (ev, track){
+    DialogService.setNewTrack(ev, track);
     
 
+}
 
-    console.log('SearchController is working');
 }]);

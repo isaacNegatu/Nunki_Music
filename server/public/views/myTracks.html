@@ -2,7 +2,7 @@
 <md-list>
 
 
-    <md-list-item class="md-2-line" ng-repeat="track in vm.songList.list" ng-click="vm.viewSong()">
+    <md-list-item class="md-2-line" ng-repeat="track in vm.songList.list" ng-click="vm.viewSong($event,track)">
 
 
         <img ng-src="{{track.image_url}}" class="md-avatar">
@@ -24,9 +24,7 @@
                         {{playlist.title | uppercase}}
                     </md-button>
                 </md-menu-item>
-
             </md-menu-content>
-
         </md-menu>
 
         <md-button ng-click="vm.deleteTrack(track)">

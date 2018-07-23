@@ -15,7 +15,18 @@
     <script src="vendors/angular-material.min.js"></script>
     <script src="vendors/angular-animate.min.js"></script>
     <script src="vendors/angular-route.min.js"></script>
+    <script src="vendors/angular-sanitize.min.js"></script>
     <script src="scripts/client.js"></script>
+
+
+    <script src="scripts/controllers/browse.controller.js"></script>
+    <script src="scripts/controllers/myTracks.controller.js"></script>
+    <script src="scripts/controllers/playlists.controller.js"></script>
+    <script src="scripts/controllers/search.controller.js"></script>
+    <script src="scripts/controllers/sideBar.controller.js"></script>
+    <script src="scripts/controllers/template-controllers/song.popup.controller.js"></script>
+
+
 
     <!--============== put your services here you idiot ============= -->
     <script src="scripts/services/spotify.service.js"></script>
@@ -24,15 +35,11 @@
     <!-- =========================================================== -->
     
     
-    <script src="scripts/controllers/browse.controller.js"></script>
-    <script src="scripts/controllers/myTracks.controller.js"></script>
-    <script src="scripts/controllers/playlists.controller.js"></script>
-    <script src="scripts/controllers/search.controller.js"></script>
-    <script src="scripts/controllers/sideBar.controller.js"></script>
+    
 </head>
 <body ng-app="nunkiMusic" ng-cloak layout="row" layout-align="start start">
     <div flex="25" ng-include src="'views/templates/sidebar.html'"></div>
     
-    <ng-view flex="70"></ng-view>
+    <ng-view flex="70"  id="popupContainer" ></ng-view>
 </body>
 </html>

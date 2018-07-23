@@ -1,4 +1,4 @@
-musicApp.controller('MyTracksController', ['LibraryService','SpotifyService','$mdDialog' , function(LibraryService, SpotifyService, $mdDialog){
+musicApp.controller('MyTracksController', ['LibraryService', 'DialogService', function(LibraryService, DialogService){
     console.log('MyTracksController is working');
     
     let self = this;
@@ -8,11 +8,10 @@ musicApp.controller('MyTracksController', ['LibraryService','SpotifyService','$m
 
     self.playlists = LibraryService.playlists;
 
-    self.addToPlaylist = function(track){
-        console.log(track);
-    }
 
-    self.viewSong = function (){
+    self.viewSong = function (ev, track){
+        DialogService.setNewTrack(ev, track);
+        
         console.log('view song clicked');
     }
 

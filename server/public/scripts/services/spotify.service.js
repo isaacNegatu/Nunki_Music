@@ -1,6 +1,6 @@
 musicApp.service('SpotifyService', ['$http', function ($http) {
 
-    const ACCESS_TOKEN = 'BQCrq_0GQSITWwvl1oZWfwmzePwP2audDvbfy5VDvGTEqF4kLZ3LC0k3VpNyhhQhSelX8dWAaVleICGD84BFZQT-XaKSHRV2D2JvHQeZVTlyOnoJfUHtETe_KQgutn0ReJxL7a0M2ux8hj32';
+    const ACCESS_TOKEN = 'BQD5bG6QtXuQYWoX5Njkq4ul12O8h4kLUNmVmwo_61vIcxc-jXzpMAQPYmmrIShhe9XHRvLQ_hy41EY-6tV0o99Jmzh08jJzHJ_Pewtw4jx15AJGbtx2H9K9b1xVuhVBBMB_wcwi4agQ4MNH';
 
     const BASE_URL = 'https://api.spotify.com/v1/'
 
@@ -110,6 +110,54 @@ musicApp.service('SpotifyService', ['$http', function ($http) {
 
             })
 
+    }
+
+
+    self.getTrack = function(url){
+        console.log(url);
+        
+        let request = {
+            method: 'GET',
+            url: url,
+            headers: {
+                'Authorization': 'Bearer ' + ACCESS_TOKEN
+            }
+        }
+
+        return $http(request)
+            .then(function (response) {
+                console.log(response.data);
+                
+                return response.data;
+            })
+            .catch(function (err) {
+                return false;
+                console.log(err);
+            });
+    }
+
+
+    self.getArtist = function(url){
+        console.log(url);
+        
+        let request = {
+            method: 'GET',
+            url: url,
+            headers: {
+                'Authorization': 'Bearer ' + ACCESS_TOKEN
+            }
+        }
+
+        return $http(request)
+            .then(function (response) {
+                console.log(response.data);
+                
+                return response.data;
+            })
+            .catch(function (err) {
+                return false;
+                console.log(err);
+            });
     }
 
 

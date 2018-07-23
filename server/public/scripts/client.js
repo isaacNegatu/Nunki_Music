@@ -1,6 +1,7 @@
-let musicApp = angular.module('nunkiMusic', ['ngRoute', 'ngMaterial']);
+let musicApp = angular.module('nunkiMusic', ['ngRoute', 'ngMaterial', 'ngSanitize']);
 
 musicApp.config(function($routeProvider){
+
     $routeProvider
     .when('/search', {
         templateUrl : 'views/search.html',
@@ -23,5 +24,7 @@ musicApp.config(function($routeProvider){
     })
     .otherwise({
         redirectTo : '/browse'
-    })
+    });
+
+
 });

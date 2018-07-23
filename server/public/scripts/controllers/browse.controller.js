@@ -1,4 +1,4 @@
-musicApp.controller('BrowseController', ['SpotifyService', 'LibraryService', function(SpotifyService, LibraryService){
+musicApp.controller('BrowseController', ['SpotifyService', 'LibraryService', 'DialogService', function(SpotifyService, LibraryService, DialogService){
     console.log('browse is working');
 
     let self = this;
@@ -23,6 +23,12 @@ musicApp.controller('BrowseController', ['SpotifyService', 'LibraryService', fun
 
     self.showPlaylists = function($mdMenu, ev){
         $mdMenu.open(ev);
+    }
+
+    self.viewSong = function (ev, track){
+        DialogService.setNewTrack(ev, track);
+        
+        console.log('view song clicked');
     }
     
 

@@ -8,7 +8,7 @@
 </md-container>
 
 <md-container layout="row" layout-wrap>
-    <md-card ng-repeat="track in vm.responses.list" flex-gt-xs="20" layout="column">
+    <md-card class="thumbnailCards" ng-repeat="track in vm.responses.list" flex-gt-xs="20" layout="column" ng-click="vm.viewSong($event,track)">
         <img ng-src="{{track.album.images[0].url}}" alt="" class="md-card-image">
 
         <md-card-title>{{track.name}}</md-card-title>
