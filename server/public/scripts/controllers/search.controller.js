@@ -30,8 +30,6 @@ musicApp.controller('SearchController', ['SpotifyService', 'LibraryService', 'Di
 
    self.viewSong = function (ev, track){
     DialogService.setNewTrack(ev, track);
-    
-
 }
 
 }]);

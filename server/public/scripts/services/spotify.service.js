@@ -1,6 +1,6 @@
 musicApp.service('SpotifyService', ['$http', function ($http) {
 
-    const ACCESS_TOKEN = 'BQD5bG6QtXuQYWoX5Njkq4ul12O8h4kLUNmVmwo_61vIcxc-jXzpMAQPYmmrIShhe9XHRvLQ_hy41EY-6tV0o99Jmzh08jJzHJ_Pewtw4jx15AJGbtx2H9K9b1xVuhVBBMB_wcwi4agQ4MNH';
+    const ACCESS_TOKEN = 'BQBWhK8b2yfHJ50sCcW6FxzKRGbwd1MCJBYUPsh9-_vDK95Gg3wV_t55zYXCUoQ_iicFTgBe26N4lN0pde5s8cjDfvqhdRu9j4Go9_XEyGiQgxcTO2nz_Wt9KA7pANwxvoxC8npIRloOrreh';
 
     const BASE_URL = 'https://api.spotify.com/v1/'
 

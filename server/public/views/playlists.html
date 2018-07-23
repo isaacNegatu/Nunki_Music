@@ -1,48 +1,50 @@
-<h1>Playlists</h1>
-<md-container layout="row">
+<div class="playlistDiv" layout="row">
+    <md-container flex="70" id="playlistTracks">
 
-    <md-input-container class="md-block" flex="30">
-        <label>Create a playlist</label>
-        <input type="text" ng-model="playListName" name="playlist">
-    </md-input-container>
-    <md-button class="md-primary" ng-click="vm.createPlaylist(playListName)">Create</md-button>
+        <h2>{{vm.currentPlaylistTitle}}</h2>
+        
+        <md-list-item class="md-2-line" ng-repeat="track in vm.currentPlaylist.list" ng-click="vm.viewSong($event, track)">
 
 
-</md-container>
+            <img ng-src="{{track.image_url}}" class="md-avatar">
+            <div class="md-list-item-text">
+                <h3>{{track.title}}</h3>
+                <p>{{track.name}}</p>
+            </div>
 
+            <md-button ng-click="vm.removeFromPlaylist(track)">
+                Remove from Playlist
+            </md-button>
+        </md-list-item>
 
-<md-list>
-    <md-list-item class="md-2-line" ng-repeat="playlist in vm.playlists.list" ng-click="vm.getSongsInPlaylist(playlist.id)">
+    </md-container>
+    <md-container flex="30" id="playlistSideView" layout-padding>
+        <md-container layout="column" >
 
-        <div class="md-list-item-text">
-            <h3>{{playlist.title | uppercase}}</h3>
-        </div>
+            <form ng-submit="vm.createPlaylist(playListName)">
+                <md-input-container class="md-block">
+                    <label>Create a playlist</label>
+                    <input type="text" ng-model="playListName" name="playlist">
+                </md-input-container>
+                <input type="submit" style="display:none"/>
+            </form>
+        </md-container>
 
-        <md-button ng-click="vm.deletePlaylist(playlist)">
-            <i class="material-icons">
-                delete
-            </i>
-        </md-button>
-    </md-list-item>
-</md-list>
+        <md-list>
+            <md-list-item class="md-2-line" ng-repeat="playlist in vm.playlists.list" ng-click="vm.getSongsInPlaylist(playlist.id)">
 
+                <div class="md-list-item-text">
+                    <h3>{{playlist.title | uppercase}}</h3>
+                </div>
 
-<hr>
+                <md-button ng-click="vm.deletePlaylist(playlist)">
+                    <i class="material-icons">
+                        delete
+                    </i>
+                </md-button>
+            </md-list-item>
+        </md-list>
 
+    </md-container>
 
-<md-list-item class="md-2-line" ng-repeat="track in vm.currentPlaylist.list" ng-click="vm.viewSong()">
-
-
-        <img ng-src="{{track.image_url}}" class="md-avatar">
-        <div class="md-list-item-text">
-            <h3>{{track.title}}</h3>
-            <p>{{track.name}}</p>
-        </div>
-
-        <md-button ng-click="vm.removeFromPlaylist(track)">
-            Remove from Playlist
-        </md-button>
-
-
-    </md-list-item>
-
+</div>
